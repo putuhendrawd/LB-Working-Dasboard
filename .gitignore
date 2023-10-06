@@ -3,19 +3,15 @@
 
 # ignore files upload
 files/event_metadata/*
-!files/event_metadata/example*
 files/station_metadata/*
-!files/station_metadata/example*
 files/station_waveform/*
-!files/station_waveform/example*
 files/station_waveform_image/*
-!files/station_waveform_image/example*
 
 # pass example file
-
-
-
-
+!files/event_metadata/example*
+!files/station_metadata/example*
+!files/station_waveform/example*
+!files/station_waveform_image/example*
 
 # ignore files kunjungan data
 files/kunjungan_sqes.csv
