@@ -4,11 +4,11 @@ import folium
 import streamlit.components.v1 as components
 import pandas as pd
 import geopandas as gpd
-from config import SQES_Config as config_
 import datetime
 from PIL import Image
 import os
 from src.sqes_visualization import sqes_visualization
+from src.config import SQES_Config as config_
 
 config_.page_config("SQES Visualization")  
  
@@ -51,7 +51,6 @@ def datetime_maker_cb(date,time):
 @st.cache_data
 def read_data(df,sep=","):
     st.session_state.df = pd.read_csv(df, delimiter=sep)
-    # st.session_state.df.replace(np.nan,'---',inplace=True)
     st.session_state.data_quality_dominant_options = st.session_state.df.data_quality_dominant.unique().tolist()
     st.session_state.site_quality_options = st.session_state.df.site_quality.unique().tolist()
     st.session_state.station_options = st.session_state.df.kode_sensor.tolist()
@@ -86,7 +85,7 @@ def filter_df():
     else:
         reset_filter_df()
 
-    if ~(st.session_state.visit_status_selectbox == 'All'):
+    if not st.session_state.visit_status_selectbox == 'All':
         if st.session_state.visit_status_selectbox == 'Visited':
             filtered_df = st.session_state.filtered_df
             filtered_df = filtered_df[filtered_df['kode_sensor'].isin(st.session_state.df_visit_status.Stasiun)]
@@ -95,7 +94,7 @@ def filter_df():
             filtered_df = st.session_state.filtered_df
             filtered_df = filtered_df[~filtered_df['kode_sensor'].isin(st.session_state.df_visit_status.Stasiun)]
             st.session_state.filtered_df = filtered_df 
-    
+        
     gdf_maker(st.session_state.filtered_df)
              
 def reset_filter_df():
@@ -117,30 +116,6 @@ map_center = [-2.3723687086440504, 115.75584725102497]
 zoom_start = 4.5
 m = folium.Map(location=map_center, zoom_start=zoom_start)
 m_waveform = folium.Map(location=map_center, zoom_start=zoom_start)
-
-if st.session_state.gdf is not None:
-    
-    popup = folium.GeoJsonPopup(
-        fields=st.session_state.df.columns.tolist(),
-        localize=True,
-        labels=True
-    )
-    
-    tooltip = folium.GeoJsonTooltip(
-        fields=["kode_sensor", "lokasi_sensor" ,"site_quality", "data_quality_dominant"],
-        aliases=["Stasiun", "Detail", "Site Quality", "Dominant Data Quality"],
-        localize=True,
-        sticky=False,
-        labels=True,
-        max_width=800,
-    )
-    
-    g = folium.GeoJson(
-        st.session_state.gdf,
-        tooltip=tooltip,
-        popup=popup
-        # marker=folium.Marker(icon=folium.plugins.BeautifyIcon(icon_shape="circle-dot", color="red"))
-    ).add_to(m)
     
 # main
 
@@ -165,21 +140,29 @@ with tab1:
     
     # MAIN WINDOW   
     with main:
-        # css='''
-        # <style>
-        #     section.main>div {
-        #         padding-bottom: 0rem;
-        #         overflow: off;
-        #     }
-        #     [data-testid="column"] {
-        #         overflow: auto;
-        #         height: 100vh;
-        #     }
-        # </style>
-        # '''
-        # st.markdown(css, unsafe_allow_html=True)
-        
         if st.session_state.df_caller:
+            if st.session_state.gdf is not None:
+                popup = folium.GeoJsonPopup(
+                    fields=st.session_state.df.columns.tolist(),
+                    localize=True,
+                    labels=True
+                )
+                
+                tooltip = folium.GeoJsonTooltip(
+                    fields=["kode_sensor", "lokasi_sensor" ,"site_quality", "data_quality_dominant"],
+                    aliases=["Stasiun", "Detail", "Site Quality", "Dominant Data Quality"],
+                    localize=True,
+                    sticky=False,
+                    labels=True,
+                    max_width=800,
+                )
+                
+                g = folium.GeoJson(
+                    st.session_state.gdf,
+                    tooltip=tooltip,
+                    popup=popup
+                ).add_to(m)
+            
             st.subheader("Map")
             map_render = sl_folium(
                 m,

@@ -1,5 +1,5 @@
 import obspy 
-from config import SQES_Config as config_
+from src.config import SQES_Config as config_
 from obspy import read, read_inventory, UTCDateTime
 from obspy.signal import PPSD
 from obspy.imaging.cm import pqlx

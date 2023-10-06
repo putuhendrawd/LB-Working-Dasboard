@@ -1,5 +1,5 @@
 import streamlit as st
-from config import SQES_Config as config_
+from src.config import SQES_Config as config_
 config_.page_config("Home")
 
 # "sl station_state object:", st.session_state
