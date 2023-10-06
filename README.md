@@ -1,6 +1,6 @@
 # Personal Working Dashboard
 
-Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) task
+Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) task \
 Currently featured with:
 1. SQES Visualization Dashboard ---
     SQES Data Analysis Dashboard based on Streamlit | 
