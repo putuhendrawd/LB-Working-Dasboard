@@ -6,6 +6,7 @@ class SQES_Config():
     station_waveform_path = "files/station_waveform"
     station_waveform_image_path = "files/station_waveform_image"
     event_metadata_path = "files/event_metadata"
+    station_psd_image_path = "files/station_psd_image"
     timecode = "%d%m%y%H%M%S"
     event_timecode = "%B%Y"
     datetime_convert_rules="%Y/%m/%d %H:%M:%S.%f"

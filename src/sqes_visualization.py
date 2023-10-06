@@ -1,6 +1,8 @@
 import obspy 
 from config import SQES_Config as config_
-from obspy import read, UTCDateTime
+from obspy import read, read_inventory, UTCDateTime
+from obspy.signal import PPSD
+from obspy.imaging.cm import pqlx
 from obspy.clients.fdsn import Client
 import datetime
 import pandas as pd
@@ -85,3 +87,13 @@ class sqes_visualization():
             df = pd.concat([df, pd.DataFrame([event_dict])], ignore_index=True)
         
         df.to_csv(fname, index=False)
+    
+    def run_ppsd(station_waveform, station_metadata,filename):
+        st = read(station_waveform)
+        inv = read_inventory(station_metadata)
+        
+        # PSD processing
+        ppsd = PPSD(st[0].stats,metadata=inv,ppsd_length=600,period_limits=(0.02,100))
+        ppsd.add(st)
+        ppsd.plot(f"{config_.station_psd_image_path}/{filename}.png",cmap=pqlx)
+        
