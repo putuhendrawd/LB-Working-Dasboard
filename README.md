@@ -1,7 +1,7 @@
 # Personal Working Dashboard
 
 A Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) Project\
-This working dashboard is still under development and open to any changes or updates
+This working dashboard is still under development and open to any changes or updates\
 Created using [Streamlit](https://streamlit.io/) 
 
 **Currently featured with:**
@@ -15,8 +15,7 @@ Created using [Streamlit](https://streamlit.io/)
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
+to discuss what you would like to change.\
 Please make sure to update tests as appropriate.
 
 ## License
