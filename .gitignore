@@ -6,12 +6,14 @@ files/event_metadata/*
 files/station_metadata/*
 files/station_waveform/*
 files/station_waveform_image/*
+files/station_psd_image/*
 
 # pass example file
 !files/event_metadata/example*
 !files/station_metadata/example*
 !files/station_waveform/example*
 !files/station_waveform_image/example*
+!files/station_psd_image/example*
 
 # ignore files kunjungan data
 files/kunjungan_sqes.csv

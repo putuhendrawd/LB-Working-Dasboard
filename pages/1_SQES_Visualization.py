@@ -161,7 +161,7 @@ with tab1:
             reset.button("Reset", on_click=reset_filter_df, use_container_width=True)
         else:
             st.info("Upload Here!")
-            st.file_uploader("Choose a file",type="csv",label_visibility="hidden", on_change=upload_cb, key="upload_metadata")
+            st.file_uploader("Choose a file",type="csv",label_visibility="collapsed", on_change=upload_cb, key="upload_metadata")
     
     # MAIN WINDOW   
     with main:
@@ -204,7 +204,6 @@ with tab1:
             st.subheader("Data")
             st.warning("No data loaded, click on the sample dataset button to load a sample dataset, or upload a file.")
 with tab2:
-        st.warning("Under Development")
         col1, col2 = st.columns([0.3,0.7])
         if st.session_state.df_caller:
             with col1:
@@ -236,7 +235,19 @@ with tab2:
                 else:
                     st.warning("Retrieve data first!")
                 st.subheader("PSD Data")
-                st.warning("Under Development")
+                if st.session_state.retrieve_data:
+                    fname = f"{st.session_state.select_station}-{st.session_state.datetime_input_start.strftime(config_.timecode)}-{st.session_state.datetime_input_end.strftime(config_.timecode)}"
+                    if not os.path.exists(f"{config_.station_psd_image_path}/{fname}.png"):
+                        with st.spinner("downloading data"):
+                            sqes_visualization.run_ppsd(f"{config_.station_waveform_path}/{fname}.mseed",f"{config_.station_metadata_path}/{st.session_state.select_station}.xml",fname)
+                        image = Image.open(f"{config_.station_psd_image_path}/{fname}.png")             
+                        st.image(image)
+                    else:
+                        image = Image.open(f"{config_.station_psd_image_path}/{fname}.png")
+                        st.image(image)
+                
+                else:
+                    st.warning("Retrieve data first!")
                 st.subheader("HVSR Data")
                 st.warning("Under Development")
         else:
