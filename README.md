@@ -1,7 +1,8 @@
 # Personal Working Dashboard
 
-Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) \
-Created using [Streamlit](https://streamlit.io/)
+A Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) Project\
+This working dashboard is still under development and open to any changes or updates
+Created using [Streamlit](https://streamlit.io/) 
 
 **Currently featured with:**
 1. SQES Visualization and Data Analysis Dashboard --- \
