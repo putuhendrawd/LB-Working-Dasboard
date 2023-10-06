@@ -19,3 +19,5 @@ to discuss what you would like to change.
 Please make sure to update tests as appropriate.
 
 ## License
+This Working Dashboard is a free software, you can redistribute it and/or modify it under the terms of the MIT License. \
+A copy of this license is provided in [MIT LICENSE](https://github.com/putuhendrawd/Working-Dashboard/blob/main/LICENSE.txt)
