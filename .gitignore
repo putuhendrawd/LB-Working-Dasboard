@@ -1,0 +1,11 @@
+# ignore secrets
+.streamlit/
+
+# ignore files upload
+files/event_metadata/
+files/station_metadata/
+files/station_waveform/
+files/station_waveform_image
+
+# ignore files kunjungan data
+files/kunjungan_sqes.csv
