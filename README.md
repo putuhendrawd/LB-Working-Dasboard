@@ -1,10 +1,10 @@
 # Personal Working Dashboard
 
-Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) task \
+Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) \
+Created using [Streamlit](https://streamlit.io/)
 
 Currently featured with:
-1. SQES Visualization Dashboard --- \
-    SQES Data Analysis Dashboard | \
+1. SQES Visualization and Data Analysis Dashboard --- \
     Original SQES Website: <http://182.16.248.172/sensorbmkg>
         
 2. Realtime Earthquake --- \
