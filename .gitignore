@@ -7,5 +7,11 @@ files/station_metadata/
 files/station_waveform/
 files/station_waveform_image
 
+# pass example file
+!files/event_metadata/example.csv
+!files/station_metadata/example.xml
+!files/station_waveform/example.mseed
+!files/station_waveform_image/example.png
+
 # ignore files kunjungan data
 files/kunjungan_sqes.csv
