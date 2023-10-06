@@ -3,7 +3,7 @@
 Personal Working Dashboard for Pusat Penelitian dan Pengembangan BMKG (Puslitbang BMKG) \
 Created using [Streamlit](https://streamlit.io/)
 
-Currently featured with:
+**Currently featured with:**
 1. SQES Visualization and Data Analysis Dashboard --- \
     Original SQES Website: <http://182.16.248.172/sensorbmkg>
         
