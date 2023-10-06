@@ -8,10 +8,10 @@ files/station_waveform/
 files/station_waveform_image
 
 # pass example file
-!files/event_metadata/example.csv
-!files/station_metadata/example.xml
-!files/station_waveform/example.mseed
-!files/station_waveform_image/example.png
+!files/event_metadata/example*
+!files/station_metadata/example*
+!files/station_waveform/example*
+!files/station_waveform_image/example*
 
 # ignore files kunjungan data
 files/kunjungan_sqes.csv
