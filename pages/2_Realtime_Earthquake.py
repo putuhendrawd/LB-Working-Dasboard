@@ -3,7 +3,7 @@ import pandas as pd
 import geopandas as gpd
 import folium
 from streamlit_folium import st_folium as sl_folium
-from config import SQES_Config as config_
+from src.config import SQES_Config as config_
 import datetime
 
 config_.page_config("Realtime Earthquake")  

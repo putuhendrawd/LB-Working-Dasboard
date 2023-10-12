@@ -6,7 +6,9 @@ import pandas as pd
 import geopandas as gpd
 import datetime
 from PIL import Image
+from pathlib import Path
 import os
+import glob
 from src.sqes_visualization import sqes_visualization
 from src.config import SQES_Config as config_
 
@@ -232,7 +234,27 @@ with tab2:
                 else:
                     st.warning("Retrieve data first!")
                 st.subheader("HVSR Data")
-                st.warning("Under Development")
+                if st.session_state.retrieve_data:
+                    fname = f"{st.session_state.select_station}-{st.session_state.datetime_input_start.strftime(config_.timecode)}-{st.session_state.datetime_input_end.strftime(config_.timecode)}"
+                    files = glob.glob(f"{config_.station_hvsr_image_path}/{fname}*")
+                    if not len(files):
+                        with st.spinner("downloading data"):
+                            files = sqes_visualization.run_hvsrpy(f"{config_.station_waveform_path}/{fname}.mseed")
+                        if len(files) != 0:
+                            for file in files:
+                                st.text(Path(file).stem)
+                                image = Image.open(file)             
+                                st.image(image)
+                        else:
+                            st.warning("No Data Could Be Generated")
+                    else:
+                        for file in files:
+                            st.text(Path(file).stem)
+                            image = Image.open(file)             
+                            st.image(image)
+                
+                else:
+                    st.warning("Retrieve data first!")
         else:
             st.warning("Please upload data first!")
         

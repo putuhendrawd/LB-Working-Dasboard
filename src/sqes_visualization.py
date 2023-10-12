@@ -10,6 +10,8 @@ import os
 import calendar
 import numpy as np
 import streamlit as st
+from pathlib import Path
+import glob
 
 class sqes_visualization():
     
@@ -96,4 +98,30 @@ class sqes_visualization():
         ppsd = PPSD(st[0].stats,metadata=inv,ppsd_length=600,period_limits=(0.02,100))
         ppsd.add(st)
         ppsd.plot(f"{config_.station_psd_image_path}/{filename}.png",cmap=pqlx)
-        
+    
+    def run_hvsrpy(station_waveform):
+        st = read(station_waveform)
+        st = st.merge()
+        station_available = []
+        output_list = []
+        for ch in list(st._get_common_channels_info()):
+            temp_ch = ch[-1][:2]
+            temp_st = st.select(channel=ch[-1])
+            temp_st.write(os.path.join(Path(station_waveform).parent,Path(station_waveform).stem+f"-{temp_ch}.mseed"))
+            station_available.append(temp_ch)
+            
+        for ch in station_available:
+            # run script "run_hvsrpy.py" using another env
+            hvsr_waveform = os.path.join(Path(station_waveform).parent,Path(station_waveform).stem+f"-{ch}.mseed")
+            hvsr_filename = os.path.join(config_.station_hvsr_image_path,Path(station_waveform).stem+f"-{ch}.png")
+            if os.system(f"conda run -n sqes python src/run_hvsrpy.py {hvsr_waveform} {hvsr_filename}") == 0:
+                print(f'{hvsr_waveform} process successful')
+                output_list.append(hvsr_filename)
+            else:
+                print(f'{hvsr_waveform} process error')
+
+        # remove temporary mseed
+        for temp in glob.glob("files/station_waveform/*-??.mseed"):
+            os.remove(temp)
+        return(output_list)
+                
