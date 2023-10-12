@@ -1,6 +1,10 @@
 # ignore secrets
 .streamlit/
 
+# ignore temporary files
+temp.ipynb
+temp.py
+
 # ignore files upload
 files/event_metadata/*
 files/station_metadata/*
