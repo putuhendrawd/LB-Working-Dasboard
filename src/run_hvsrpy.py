@@ -10,9 +10,6 @@ import os
 file_load = sys.argv[1]
 file_name = sys.argv[2]
 
-
-# file_name = file_load
-
 # default settings 
 # more info read --> https://github.com/jpvantassel/hvsrpy
 windowlength = 60
@@ -28,9 +25,9 @@ resample_fnum = 200
 resample_type = 'log'
 peak_f_lower = None
 peak_f_upper = None
-method = "geometric-mean"
+method = "squared-average"
 azimuth = 0
-rejection_bool = True
+rejection_bool = False
 n = 2
 max_iterations = 50
 distribution_f0 = "lognormal"
@@ -133,7 +130,7 @@ for ax, title in zip([ax3, ax4], ["Before Rejection", "After Rejection"]):
     else:
         # display(pd.DataFrame(columns=[""], index=["Window length", "No. of windows"], 
         #                  data=[f"{windowlength}s", str(sensor.ns.nseries)]))
-        hv.print_stats(distribution_f0)
+        # hv.print_stats(distribution_f0)
         fig.legend(loc="upper center", bbox_to_anchor=(0.77, 0.4))
         break
     ax.set_title(title)
